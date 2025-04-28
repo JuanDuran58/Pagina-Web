@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nathan</title>
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+      margin: auto;
+    }
+
+    .column {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .item {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #f9f9f9;
+      transition: background-color 0.3s;
+    }
+
+    .item.selected {
+      background-color: #d0f0ff;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+
+    #matches {
+      margin-top: 30px;
+    }
+
+    #score {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .fill-text-section {
+      margin: 40px auto;
+      width: 80%;
+      border-top: 2px solid #ccc;
+      padding-top: 30px;
+    }
+
+    .quiz-question {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-option {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+    }
+
+    .sentence-container {
+      margin-bottom: 20px;
+    }
+
+    .sentence-game {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      min-height: 50px;
+    }
+
+    .dropzone {
+      display: inline-block;
+      min-width: 100px;
+      min-height: 30px;
+      background-color: #ddd;
+      margin: 5px;
+      vertical-align: middle;
+      padding: 5px;
+      text-align: center;
+    }
+
+    .draggable {
+      padding: 5px 10px;
+      background-color: #ddd;
+      border: 1px solid #ccc;
+      cursor: move;
+      margin: 5px;
+      border-radius: 5px;
+    }
+
+    .draggable.dragging {
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Adverbios de Frecuencia en Inglés</h1>
+
+  <h2>¿Que son los adverbios de frecuencia?</h2>
+
+  <p>Los adverbios de frecuencia son palabras que usamos para indicar la regularidad con que
+    ocurre una acción. Nos permiten hablar sobre hábitos, rutinas y eventos, y responden
+    preguntas como: How often? (¿Con qué frecuencia?).</p>
+
+  <h2>Clasificación de los adverbios de frecuencia</h2>
+
+  <p>Los adverbios de frecuencia se pueden clasificar en dos categorías:</p>
+
+  <p>Adverbios de frecuencia fija:<br>
+  Estos adverbios expresan una regularidad específica y son fáciles de medir.<br>
+  Ejemplo: always, never, sometimes.</p>
+  <p>Adverbios de frecuencia relativa:<br>
+    Expresan una frecuencia que puede variar dependiendo del contexto o la<br>
+    interpretación. Ejemplo: occasionally, rarely.</p>
+  <br>
+  <h2>Adverbios mas comunes y su relación</h2>
+  <p>Aquí tienes una tabla con los adverbios de frecuencia más comunes, sus significados y
+    ejemplos prácticos:</p>
+  <table>
+    <colgroup>
+      <col style="background-color: #0056b3;">
+      <col style="background-color: aquamarine;">
+      <col style="background-color: #007bff">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Adverbio</th>
+        <th>Significado en <br>
+          español</th>
+        <th>Ejemplo</th>
+      </tr>
+      <tr>
+        <th>Always</th>
+        <th>Siempre</th>
+        <th>I always wake up early</th>
+      </tr>
+      <tr>
+        <th>Usually</th>
+        <th>Usualmente</th>
+        <th>She usually drinks coffee</th>
+      </tr>
+      <tr>
+        <th>Often</th>
+        <th>A menudo</th>
+        <th>We often go to the park</th>
+      </tr>
+      <tr>
+         <th>Sometimes</th>
+         <th>A veces</th>
+         <th>He sometimes play videogames</th>
+      </tr>
+      <tr>
+        <th>Occasionally</th>
+        <th>Ocasionalmente</th>
+        <th>They occasionally visit their grandparents</th>
+      </tr>
+      <tr>
+        <th>Rarely</th>
+        <th>Raramente</th>
+        <th>I rarely eat fast food</th>
+      </tr>
+      <tr>
+        <th>Never</th>
+        <th>Nunca</th>
+        <th>She never skips school</th>
+      </tr>
+    </thead>
+  </table>
+
+  <h2>Reglas para usar los adverbios de frecuencia</h2>
+
+  <h3>Conecta los elementos</h3>
+  <p>Haz clic en un elemento de la izquierda y luego en uno de la derecha para conectarlos.</p>
+
+  <div class="container">
+    <div class="column" id="left-column">
+      <div class="item" data-id="1">I go to the gym only once a year</div>
+      <div class="item" data-id="2">She listens to music every morning</div>
+      <div class="item" data-id="3">They play soccer two or three times a week</div>
+      <div class="item" data-id="4">We go to the beach occasionally</div>
+      <div class="item" data-id="5">He has never traveled by plane</div>
+    </div>
+    <div class="column" id="right-column">
+      <div class="item" data-id="3">Often</div>
+      <div class="item" data-id="5">Never</div>
+      <div class="item" data-id="1">Rarely</div>
+      <div class="item" data-id="2">Always</div>
+      <div class="item" data-id="4">Sometimes</div>
+    </div>
+  </div>
+
+  <div id="matches">
+    <p>Conexiones:</p>
+    <ul id="match-list"></ul>
+  </div>
+
+  <div id="score">
+    <strong>Puntuación: </strong><span id="score-count">0</span>
+  </div>
+
+  <button onclick="resetGame()">Reiniciar</button>
+
+  <div class="fill-text-section">
+    <p class="quiz-question">She _______ goes to the gym on weekends.</p>
+    <label class="quiz-option"><input type="radio" name="fill1" value="Usually"> Usually</label>
+    <label class="quiz-option"><input type="radio" name="fill1" value="Rarely"> Rarely</label>
+    <label class="quiz-option"><input type="radio" name="fill1" value="Always"> Always</label>
+    <label class="quiz-option"><input type="radio" name="fill1" value="Sometimes"> Sometimes</label>
+    <label class="quiz-option"><input type="radio" name="fill1" value="Often"> Often</label>
+    <button onclick="checkFillText('fill1', 'Usually', 'fill-feedback1')">Responder</button>
+    <p id="fill-feedback1"></p>
+  </div>
+
+  <div class="fill-text-section">
+    <p class="quiz-question">I _______ eat breakfast before going to work.</p>
+    <label class="quiz-option"><input type="radio" name="fill2" value="Usually"> Usually</label>
+    <label class="quiz-option"><input type="radio" name="fill2" value="Rarely"> Rarely</label>
+    <label class="quiz-option"><input type="radio" name="fill2" value="Always"> Always</label>
+    <label class="quiz-option"><input type="radio" name="fill2" value="Sometimes"> Sometimes</label>
+    <label class="quiz-option"><input type="radio" name="fill2" value="Often"> Often</label>
+    <button onclick="checkFillText('fill2', 'Always', 'fill-feedback2')">Responder</button>
+    <p id="fill-feedback2"></p>
+  </div>
+
+  <div class="fill-text-section">
+    <p class="quiz-question">We _______ watch movies at the cinema.</p>
+    <label class="quiz-option"><input type="radio" name="fill3" value="Usually"> Usually</label>
+    <label class="quiz-option"><input type="radio" name="fill3" value="Rarely"> Rarely</label>
+    <label class="quiz-option"><input type="radio" name="fill3" value="Always"> Always</label>
+    <label class="quiz-option"><input type="radio" name="fill3" value="Sometimes"> Sometimes</label>
+    <label class="quiz-option"><input type="radio" name="fill3" value="Often"> Often</label>
+    <button onclick="checkFillText('fill3', 'Often', 'fill-feedback3')">Responder</button>
+    <p id="fill-feedback3"></p>
+  </div>
+
+  <div class="fill-text-section">
+    <p class="quiz-question">They _______ arrive late to classes.</p>
+    <label class="quiz-option"><input type="radio" name="fill4" value="Usually"> Usually</label>
+    <label class="quiz-option"><input type="radio" name="fill4" value="Rarely"> Rarely</label>
+    <label class="quiz-option"><input type="radio" name="fill4" value="Always"> Always</label>
+    <label class="quiz-option"><input type="radio" name="fill4" value="Sometimes"> Sometimes</label>
+    <label class="quiz-option"><input type="radio" name="fill4" value="Often"> Often</label>
+    <button onclick="checkFillText('fill4', 'Sometimes', 'fill-feedback4')">Responder</button>
+    <p id="fill-feedback4"></p>
+  </div>
+
+  <div class="fill-text-section">
+    <p class="quiz-question">He _______ forgets his homework.</p>
+    <label class="quiz-option"><input type="radio" name="fill5" value="Usually"> Usually</label>
+    <label class="quiz-option"><input type="radio" name="fill5" value="Rarely"> Rarely</label>
+    <label class="quiz-option"><input type="radio" name="fill5" value="Always"> Always</label>
+    <label class="quiz-option"><input type="radio" name="fill5" value="Sometimes"> Sometimes</label>
+    <label class="quiz-option"><input type="radio" name="fill5" value="Often"> Often</label>
+    <button onclick="checkFillText('fill5', 'Rarely', 'fill-feedback5')">Responder</button>
+    <p id="fill-feedback5"></p>
+  </div>
+
+  <!-- Juego de oraciones -->
+  <div class="sentence-container">
+    <div id="sentence-game-1" class="sentence-game"></div>
+    <button onclick="checkSentenceOrder(1)">Verificar oración 1</button>
+    <p id="sentence-feedback-1"></p>
+  </div>
+
+  <div class="sentence-container">
+    <div id="sentence-game-2" class="sentence-game"></div>
+    <button onclick="checkSentenceOrder(2)">Verificar oración 2</button>
+    <p id="sentence-feedback-2"></p>
+  </div>
+
+  <div class="sentence-container">
+    <div id="sentence-game-3" class="sentence-game"></div>
+    <button onclick="checkSentenceOrder(3)">Verificar oración 3</button>
+    <p id="sentence-feedback-3"></p>
+  </div>
+
+  <script>
+    let selectedLeft = null;
+    let score = 0;
+
+    const respuestasCorrectas = {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5"
+    };
+
+    const usedLeft = new Set();
+
+    document.querySelectorAll('#left-column .item').forEach(item => {
+      item.addEventListener('click', () => {
+        document.querySelectorAll('#left-column .item').forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        selectedLeft = item;
+      });
+    });
+
+    document.querySelectorAll('#right-column .item').forEach(item => {
+      item.addEventListener('click', () => {
+        if (selectedLeft && !usedLeft.has(selectedLeft.dataset.id)) {
+          const leftId = selectedLeft.dataset.id;
+          const rightId = item.dataset.id;
+          const li = document.createElement('li');
+
+          if (respuestasCorrectas[leftId] === rightId) {
+            li.textContent = `${selectedLeft.textContent} → ${item.textContent} ✅ ¡Correcto!`;
+            li.classList.add('correct');
+            score++;
+            usedLeft.add(leftId);
+          } else {
+            li.textContent = `${selectedLeft.textContent} → ${item.textContent} ❌ Incorrecto`;
+            li.classList.add('incorrect');
+            score--;
+          }
+
+          document.getElementById('match-list').appendChild(li);
+          selectedLeft.classList.remove('selected');
+          selectedLeft = null;
+          updateScore();
+        }
+      });
+    });
+
+    function updateScore() {
+      document.getElementById('score-count').textContent = score;
+    }
+
+    function resetGame() {
+      document.getElementById('match-list').innerHTML = '';
+      document.querySelectorAll('.item').forEach(i => i.classList.remove('selected'));
+      document.querySelectorAll('input[type="radio"]').forEach(i => i.checked = false);
+      document.querySelectorAll('p[id^="fill-feedback"]').forEach(p => p.textContent = '');
+      selectedLeft = null;
+      score = 0;
+      usedLeft.clear();
+      updateScore();
+    }
+
+    function checkFillText(groupName, correctAnswer, feedbackId) {
+      const selected = document.querySelector(`input[name="${groupName}"]:checked`);
+      const feedback = document.getElementById(feedbackId);
+      if (!selected) {
+        feedback.textContent = "Por favor selecciona una opción.";
+        feedback.style.color = "orange";
+        return;
+      }
+
+      if (selected.value === correctAnswer) {
+        feedback.textContent = "✅ ¡Correcto!";
+        feedback.style.color = "green";
+        score++;
+      } else {
+        feedback.textContent = "❌ Incorrecto.";
+        feedback.style.color = "red";
+        score--;
+      }
+
+      updateScore();
+    }
+
+    const sentenceGameData = [
+      {
+        id: 1,
+        sentenceParts: ["I", "usually", "run", "in", "the", "morning"],
+        correctOrder: [0, 1, 2, 3, 4, 5]
+      },
+      {
+        id: 2,
+        sentenceParts: ["We", "eat", "breakfast", "often", "together"],
+        correctOrder: [0, 3, 1, 2, 4]
+      },
+      {
+        id: 3,
+        sentenceParts: ["He", "never", "studies", "in", "the", "evening"],
+        correctOrder: [0, 1, 2, 3, 4, 5]
+      }
+    ];
+
+    function createSentenceGame(id) {
+      const gameData = sentenceGameData.find(game => game.id === id);
+      const gameContainer = document.getElementById(`sentence-game-${id}`);
+      const shuffledParts = [...gameData.sentenceParts].sort(() => Math.random() - 0.5);
+
+      shuffledParts.forEach((word, index) => {
+        const wordElement = document.createElement("div");
+        wordElement.textContent = word;
+        wordElement.classList.add("draggable");
+        wordElement.setAttribute("draggable", true);
+
+        wordElement.addEventListener("dragstart", (event) => {
+          event.dataTransfer.setData("text", word);
+          wordElement.classList.add("dragging");
+        });
+
+        wordElement.addEventListener("dragend", () => {
+          wordElement.classList.remove("dragging");
+        });
+
+        gameContainer.appendChild(wordElement);
+      });
+
+      for (let i = 0; i < gameData.sentenceParts.length; i++) {
+        const dropzone = document.createElement("div");
+        dropzone.classList.add("dropzone");
+        dropzone.setAttribute("data-id", i);
+        dropzone.addEventListener("dragover", (event) => {
+          event.preventDefault();
+        });
+        dropzone.addEventListener("drop", (event) => {
+          event.preventDefault();
+          const droppedWord = event.dataTransfer.getData("text");
+          event.target.textContent = droppedWord;
+        });
+
+        gameContainer.appendChild(dropzone);
+      }
+    }
+
+    function checkSentenceOrder(id) {
+      const gameData = sentenceGameData.find(game => game.id === id);
+      const dropzones = document.querySelectorAll(`#sentence-game-${id} .dropzone`);
+      const userOrder = Array.from(dropzones).map(dropzone => dropzone.textContent.trim());
+      const correctOrder = gameData.correctOrder.map(index => gameData.sentenceParts[index]);
+
+      const isCorrect = userOrder.join(" ") === correctOrder.join(" ");
+      const feedback = document.getElementById(`sentence-feedback-${id}`);
+      if (isCorrect) {
+        feedback.textContent = "✅ ¡Correcto!";
+        feedback.style.color = "green";
+      } else {
+        feedback.textContent = "❌ Incorrecto.";
+        feedback.style.color = "red";
+      }
+    }
+
+    window.onload = () => {
+      sentenceGameData.forEach(game => createSentenceGame(game.id));
+    };
+  </script>
+</body>
+</html>
