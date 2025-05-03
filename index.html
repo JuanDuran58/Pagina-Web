@@ -268,33 +268,36 @@
     <strong>Puntuación: </strong><span id="score-count">0</span>
   </div>
 
-  <button onclick="resetGame()">Reiniciar</button>
+    <button onclick="resetGame()">Reiniciar</button>
 
   <div class="fill-text-section">
-    <p class="quiz-question">She _______ goes to the gym on weekends.</p>
+    <p>Pista: Siempre que tienes vacaciones en la playa lo haces sin falta.</p>
+    <p class="quiz-question">You _______ goes swimming in the ocean when you are on vacation.</p>
     <label class="quiz-option"><input type="radio" name="fill1" value="Usually"> Usually</label>
     <label class="quiz-option"><input type="radio" name="fill1" value="Rarely"> Rarely</label>
     <label class="quiz-option"><input type="radio" name="fill1" value="Always"> Always</label>
     <label class="quiz-option"><input type="radio" name="fill1" value="Sometimes"> Sometimes</label>
-    <label class="quiz-option"><input type="radio" name="fill1" value="Often"> Often</label>
-    <button onclick="checkFillText('fill1', 'Usually', 'fill-feedback1')">Responder</button>
+    <label class="quiz-option"><input type="radio" name="fill1" value="Often"> Occasionally</label>
+    <button onclick="checkFillText('fill1', 'Always', 'fill-feedback1')">Responder</button>
     <p id="fill-feedback1"></p>
   </div>
 
   <div class="fill-text-section">
-    <p class="quiz-question">I _______ eat breakfast before going to work.</p>
-    <label class="quiz-option"><input type="radio" name="fill2" value="Usually"> Usually</label>
-    <label class="quiz-option"><input type="radio" name="fill2" value="Rarely"> Rarely</label>
-    <label class="quiz-option"><input type="radio" name="fill2" value="Always"> Always</label>
+    <p>Pista: Es algo que hacen ocasionalmente, pero no cada mes.</p>
+    <p class="quiz-question">We _______ visit museums to learn about history.</p>
+    <label class="quiz-option"><input type="radio" name="fill2" value="Usually"> Often</label>
+    <label class="quiz-option"><input type="radio" name="fill2" value="Rarely"> Usually</label>
+    <label class="quiz-option"><input type="radio" name="fill2" value="Occasionally"> Occasionally</label>
     <label class="quiz-option"><input type="radio" name="fill2" value="Sometimes"> Sometimes</label>
-    <label class="quiz-option"><input type="radio" name="fill2" value="Often"> Often</label>
-    <button onclick="checkFillText('fill2', 'Always', 'fill-feedback2')">Responder</button>
+    <label class="quiz-option"><input type="radio" name="fill2" value="Often"> Rarely</label>
+    <button onclick="checkFillText('fill2', 'Occasionally', 'fill-feedback2')">Responder</button>
     <p id="fill-feedback2"></p>
   </div>
 
   <div class="fill-text-section">
-    <p class="quiz-question">We _______ watch movies at the cinema.</p>
-    <label class="quiz-option"><input type="radio" name="fill3" value="Usually"> Usually</label>
+    <p>Pista: Si el clima es bueno, lo hace más de una vez al mes.</p>
+    <p class="quiz-question">I _______ go hiking in the mountains when the weather is nice.</p>
+    <label class="quiz-option"><input type="radio" name="fill3" value="Usually"> Ocassionally</label>
     <label class="quiz-option"><input type="radio" name="fill3" value="Rarely"> Rarely</label>
     <label class="quiz-option"><input type="radio" name="fill3" value="Always"> Always</label>
     <label class="quiz-option"><input type="radio" name="fill3" value="Sometimes"> Sometimes</label>
@@ -304,28 +307,29 @@
   </div>
 
   <div class="fill-text-section">
-    <p class="quiz-question">They _______ arrive late to classes.</p>
-    <label class="quiz-option"><input type="radio" name="fill4" value="Usually"> Usually</label>
-    <label class="quiz-option"><input type="radio" name="fill4" value="Rarely"> Rarely</label>
+    <p>Pista: Es costumbre para ti los fines de semana, sin excepción.</p>
+    <p class="quiz-question">I _______ wake up late on Sundays.</p>
+    <label class="quiz-option"><input type="radio" name="fill4" value="Usually"> Rarely</label>
+    <label class="quiz-option"><input type="radio" name="fill4" value="Rarely"> Occasionally</label>
     <label class="quiz-option"><input type="radio" name="fill4" value="Always"> Always</label>
-    <label class="quiz-option"><input type="radio" name="fill4" value="Sometimes"> Sometimes</label>
+    <label class="quiz-option"><input type="radio" name="fill4" value="Sometimes"> Usually</label>
     <label class="quiz-option"><input type="radio" name="fill4" value="Often"> Often</label>
-    <button onclick="checkFillText('fill4', 'Sometimes', 'fill-feedback4')">Responder</button>
+    <button onclick="checkFillText('fill4', 'Always', 'fill-feedback4')">Responder</button>
     <p id="fill-feedback4"></p>
   </div>
 
   <div class="fill-text-section">
-    <p class="quiz-question">He _______ forgets his homework.</p>
-    <label class="quiz-option"><input type="radio" name="fill5" value="Usually"> Usually</label>
+    <p>Pista:No es común para él, pero lo ha intentado algunas veces</p>
+    <p class="quiz-question">He _______ tries new hobbies like painting or cooking.</p>
+    <label class="quiz-option"><input type="radio" name="fill5" value="Usually"> Sometimesy</label>
     <label class="quiz-option"><input type="radio" name="fill5" value="Rarely"> Rarely</label>
     <label class="quiz-option"><input type="radio" name="fill5" value="Always"> Always</label>
-    <label class="quiz-option"><input type="radio" name="fill5" value="Sometimes"> Sometimes</label>
+    <label class="quiz-option"><input type="radio" name="fill5" value="Sometimes"> Ocassionally</label>
     <label class="quiz-option"><input type="radio" name="fill5" value="Often"> Often</label>
     <button onclick="checkFillText('fill5', 'Rarely', 'fill-feedback5')">Responder</button>
     <p id="fill-feedback5"></p>
   </div>
 
-  <!-- Juego de oraciones -->
   <div class="sentence-container">
     <div id="sentence-game-1" class="sentence-game"></div>
     <button onclick="checkSentenceOrder(1)">Verificar oración 1</button>
@@ -343,7 +347,6 @@
     <button onclick="checkSentenceOrder(3)">Verificar oración 3</button>
     <p id="sentence-feedback-3"></p>
   </div>
-
   <script>
     let selectedLeft = null;
     let score = 0;
